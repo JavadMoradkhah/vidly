@@ -1,4 +1,5 @@
 const genreRoutes = require('./routes/genres');
+const customerRoutes = require('./routes/customers');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const express = require('express');
@@ -21,6 +22,7 @@ app.get('/api', (req, res) => {
 });
 
 app.use('/api/genres', genreRoutes);
+app.use('/api/customers', customerRoutes);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
