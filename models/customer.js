@@ -1,3 +1,4 @@
+const Joi = require('joi');
 const mongoose = require('mongoose');
 
 const { Schema, model } = mongoose;
@@ -11,4 +12,15 @@ const Customer = model(
   })
 );
 
-module.exports = Customer;
+function validateCustomer(customer) {
+  const schema = Joi.object({
+    name: Joi.string().min(3).max(30).required(),
+    phone: Joi.string().min(5).max(50).required(),
+    isGold: Joi.boolean().default(false),
+  });
+
+  return schema.validate(customer);
+}
+
+module.exports.Customer = Customer;
+module.exports.validate = validateCustomer;
