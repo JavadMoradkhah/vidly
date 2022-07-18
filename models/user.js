@@ -8,10 +8,11 @@ const userSchema = new Schema({
   name: { type: String, minLength: 5, maxLength: 50, required: true },
   email: { type: String, minLength: 5, maxLength: 255, unique: true, required: true },
   password: { type: String, minLength: 5, maxLength: 1024, required: true },
+  isAdmin: { type: Boolean, default: false },
 });
 
 userSchema.methods.generateAuthToken = function () {
-  const token = jwt.sign({ _id: this._id }, process.env.JWT_PRIVATE_KEY);
+  const token = jwt.sign({ _id: this._id, isAdmin: this.isAdmin }, process.env.JWT_PRIVATE_KEY);
   return token;
 };
 
