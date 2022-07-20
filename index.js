@@ -33,8 +33,6 @@ winston.add(winston.transports.MongoDB, {
 
 app.use(express.json());
 
-Promise.reject(new Error('Failed miserably')).then(() => console.log(''));
-
 mongoose
   .connect(process.env.MONGO_DB)
   .then(() => console.log('Connected to the MongoDB...'))
@@ -42,10 +40,6 @@ mongoose
     console.log('Could not connect to the MongoDB...', err);
     process.exit(1);
   });
-
-app.get('/api', (req, res) => {
-  res.send('Hello World');
-});
 
 app.use('/api/genres', genreRoutes);
 app.use('/api/customers', customerRoutes);
