@@ -5,7 +5,7 @@ const movieRoutes = require('../routes/movies');
 const rentalRoutes = require('../routes/rentals');
 const userRoutes = require('../routes/users');
 const authRoutes = require('../routes/auth');
-const error = require('./middlewares/error');
+const error = require('../middlewares/error');
 
 module.exports = function (app) {
   app.use(express.json());
