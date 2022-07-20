@@ -17,11 +17,23 @@ const app = express();
 
 dotenv.config();
 
+process.on('uncaughtException', (error) => {
+  winston.error(error.message, error);
+  process.exit(1);
+});
+
+process.on('unhandledRejection', (error) => {
+  winston.error(error.message, error);
+  process.exit(1);
+});
+
 winston.add(winston.transports.MongoDB, {
   db: process.env.MONGO_DB,
 });
 
 app.use(express.json());
+
+Promise.reject(new Error('Failed miserably')).then(() => console.log(''));
 
 mongoose
   .connect(process.env.MONGO_DB)
