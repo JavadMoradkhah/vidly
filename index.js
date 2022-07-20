@@ -1,5 +1,6 @@
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
+const error = require('./middlewares/error');
 const genreRoutes = require('./routes/genres');
 const customerRoutes = require('./routes/customers');
 const movieRoutes = require('./routes/movies');
@@ -33,6 +34,8 @@ app.use('/api/movies', movieRoutes);
 app.use('/api/rentals', rentalRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
+
+app.use(error);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
