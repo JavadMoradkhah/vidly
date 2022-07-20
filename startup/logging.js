@@ -3,9 +3,13 @@ require('winston-mongodb');
 require('express-async-errors');
 
 module.exports = function () {
+  winston.handleExceptions(
+    new winston.transports.Console({ colorize: true, prettyPrint: true }),
+    new winston.transports.File({ filename: 'uncaughtExceptions.log' })
+  );
+
   process.on('uncaughtException', (error) => {
-    winston.error(error.message, error);
-    process.exit(1);
+    throw error;
   });
 
   process.on('unhandledRejection', (error) => {
