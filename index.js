@@ -1,4 +1,6 @@
 require('express-async-errors');
+const winston = require('winston');
+require('winston-mongodb');
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
 const error = require('./middlewares/error');
@@ -13,9 +15,13 @@ const dotenv = require('dotenv');
 const express = require('express');
 const app = express();
 
-app.use(express.json());
-
 dotenv.config();
+
+winston.add(winston.transports.MongoDB, {
+  db: process.env.MONGO_DB,
+});
+
+app.use(express.json());
 
 mongoose
   .connect(process.env.MONGO_DB)
