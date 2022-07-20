@@ -23,12 +23,8 @@ router.post('/', auth, async (req, res) => {
     name: req.body.name,
   });
 
-  try {
-    const result = await genre.save();
-    res.send(result);
-  } catch (error) {
-    return res.status(400).send(error.message);
-  }
+  const result = await genre.save();
+  res.send(result);
 });
 
 router.put('/:id', auth, async (req, res) => {

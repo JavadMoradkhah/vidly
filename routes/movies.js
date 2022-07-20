@@ -29,12 +29,8 @@ router.post('/', auth, async (req, res) => {
     dailyRentalRate: req.body.dailyRentalRate,
   });
 
-  try {
-    const result = await movie.save();
-    res.send(result);
-  } catch (error) {
-    return res.status(400).send(error.message);
-  }
+  const result = await movie.save();
+  res.send(result);
 });
 
 router.put('/:id', auth, async (req, res) => {

@@ -24,12 +24,8 @@ router.post('/', auth, async (req, res) => {
     isGold: req.body.isGold,
   });
 
-  try {
-    const result = await customer.save();
-    res.send(result);
-  } catch (error) {
-    return res.status(400).send(error.message);
-  }
+  const result = await customer.save();
+  res.send(result);
 });
 
 router.put('/:id', auth, async (req, res) => {
