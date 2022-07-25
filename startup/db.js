@@ -5,5 +5,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 module.exports = function () {
-  mongoose.connect(process.env.MONGO_DB).then(() => winston.info('Connected to the MongoDB...'));
+  const environment = String(process.env.NODE_ENV).trim();
+  const DB = environment === 'test' ? process.env.TEST_MONGO_DB : process.env.MONGO_DB;
+  mongoose.connect(DB).then(() => winston.info('Connected to the MongoDB...'));
 };

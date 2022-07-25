@@ -1,5 +1,5 @@
 const winston = require('winston');
-require('winston-mongodb');
+// require('winston-mongodb');
 require('express-async-errors');
 
 module.exports = function () {
@@ -17,7 +17,7 @@ module.exports = function () {
     process.exit(1);
   });
 
-  winston.add(winston.transports.MongoDB, {
-    db: process.env.MONGO_DB,
-  });
+  // winston.add(winston.transports.MongoDB, {
+  //   db: process.env.MONGO_DB,
+  // });
 };
