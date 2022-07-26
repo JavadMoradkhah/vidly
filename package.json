@@ -6,7 +6,7 @@
   "scripts": {
     "dev:start": "nodemon index.js",
     "dev:test": "SET NODE_ENV=test && node index.js",
-    "test": "jest --watchAll --verbose"
+    "test": "jest --watchAll --verbose --coverage"
   },
   "keywords": [],
   "author": "",
@@ -35,3 +35,4 @@
     "testEnvironment": "./tests/custom-test-env.js"
   }
 }
+
